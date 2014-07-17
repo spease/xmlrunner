@@ -8,6 +8,7 @@ default TextTestRunner.
 import os
 import sys
 import time
+import codecs
 try:
     from unittest2.runner import TextTestRunner
     from unittest2.runner import TextTestResult as _TextTestResult
@@ -21,6 +22,8 @@ try:
 except ImportError:
     from io import StringIO
 
+if sys.version_info[0] >= 3:
+    unicode=str
 
 # Allow version to be detected at runtime.
 from .version import __version__, __version_info__
@@ -287,8 +290,8 @@ class _XMLTestResult(_TextTestResult):
             testcase.appendChild(failure)
             if test_result.outcome != _TestInfo.SKIP:
                 failure.setAttribute('type', test_result.err[0].__name__)
-                failure.setAttribute('message', str(test_result.err[1]))
-                error_info = str(test_result.get_error_info())
+                failure.setAttribute('message', unicode(test_result.err[1]))  # don't use str(), breaks on py2
+                error_info = unicode(test_result.get_error_info())
                 failureText = xml_document.createCDATASection(error_info)
                 failure.appendChild(failureText)
             else:
@@ -340,11 +343,11 @@ class _XMLTestResult(_TextTestResult):
             xml_content = doc.toprettyxml(indent='\t')
 
             if type(test_runner.output) is str:
-                report_file = open(
+                report_file = codecs.open(
                     '%s%sTEST-%s-%s.xml' % (
                         test_runner.output, os.sep, suite,
                         test_runner.outsuffix
-                    ), 'w'
+                    ), 'w', 'utf-8'
                 )
                 try:
                     report_file.write(xml_content)
