@@ -4,6 +4,10 @@ unittest-xml-reporting is a unittest test runner that can save test results
 to XML files that can be consumed by a wide range of tools, such as build
 systems, IDEs and continuous integration servers.
 
+If you find a bug the best way to have it fixed is to fix it yourself and to make a pull request.
+
+If you want you can even get direct access to the repository, is always better to have more than one maintainer.
+
 ## Requirements
 
 * Python 2.7+

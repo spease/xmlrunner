@@ -3,13 +3,7 @@
 import os
 from setuptools import setup, find_packages
 
-# Load version information
-xmlrunner_version = os.path.join(
-    os.path.abspath(os.path.dirname(__file__)),
-    'xmlrunner', 'version.py'
-)
-exec(compile(open(xmlrunner_version).read(), xmlrunner_version, 'exec'))
-
+from xmlrunner.version import __version__
 
 setup(
     name = 'xmlrunner',
