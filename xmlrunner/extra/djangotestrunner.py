@@ -35,8 +35,7 @@ class XMLTestRunner(DjangoTestSuiteRunner):
 
         Returns the number of tests that failed.
         """
-        setup_test_environment()
-
+        self.setup_test_environment()
         settings.DEBUG = False
 
         verbosity = getattr(settings, 'TEST_OUTPUT_VERBOSE', 1)
@@ -54,6 +53,12 @@ class XMLTestRunner(DjangoTestSuiteRunner):
             output=output).run(suite)
 
         self.teardown_databases(old_config)
-        teardown_test_environment()
+        self.teardown_test_environment()
 
         return len(result.failures) + len(result.errors)
+
+    def setup_test_environment(self, **kwargs):
+        setup_test_environment()
+
+    def teardown_test_environment(self, **kwargs):
+        teardown_test_environment()
