@@ -8,12 +8,13 @@ This script shows how to use the XMLTestRunner in a Django project. To learn
 how to configure a custom TestRunner in a Django project, please read the
 Django docs website.
 """
-
+import os
 from django.conf import settings
 from django.test.simple import DjangoTestSuiteRunner
 from django.test.utils import setup_test_environment, teardown_test_environment
 import xmlrunner
 
+os.environ['DJANGO_SETTINGS_MODULE'] = 'mysite.settings'
 
 class XMLTestRunner(DjangoTestSuiteRunner):
     def run_tests(self, test_labels, extra_tests=None, **kwargs):
