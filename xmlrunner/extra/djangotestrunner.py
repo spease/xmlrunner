@@ -4,17 +4,15 @@
 Custom Django test runner that runs the tests using the
 XMLTestRunner class.
 
-This script shows how to use the XMLTestRunner in a Django project. To learn
-how to configure a custom TestRunner in a Django project, please read the
-Django docs website.
+Usage of this class requires Django to be installed and is intended as a test
+suite runner for Django projects. To learn how to configure a custom TestRunner
+in a Django project, please read the Django docs website.
 """
-import os
 from django.conf import settings
 from django.test.simple import DjangoTestSuiteRunner
 from django.test.utils import setup_test_environment, teardown_test_environment
 import xmlrunner
 
-os.environ['DJANGO_SETTINGS_MODULE'] = 'mysite.settings'
 
 class XMLTestRunner(DjangoTestSuiteRunner):
     def run_tests(self, test_labels, extra_tests=None, **kwargs):
