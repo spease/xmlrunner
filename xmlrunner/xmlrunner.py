@@ -181,8 +181,8 @@ class _XMLTestResult(_TextTestResult):
         """
         Called when a test method fails.
         """
-        testinfo = _TestInfo(self, test, _TestInfo.ERROR, err)
-        self.errors.append((
+        testinfo = _TestInfo(self, test, _TestInfo.FAILURE, err)
+        self.failures.append((
             testinfo,
             self._exc_info_to_string(err, test)
         ))
