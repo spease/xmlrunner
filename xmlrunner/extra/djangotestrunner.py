@@ -9,12 +9,12 @@ suite runner for Django projects. To learn how to configure a custom TestRunner
 in a Django project, please read the Django docs website.
 """
 from django.conf import settings
-from django.test.simple import DjangoTestSuiteRunner
+from django.test.runner import DiscoverRunner
 from django.test.utils import setup_test_environment, teardown_test_environment
 import xmlrunner
 
 
-class XMLTestRunner(DjangoTestSuiteRunner):
+class XMLTestRunner(DiscoverRunner):
     def run_tests(self, test_labels, extra_tests=None, **kwargs):
         """
         Run the unit tests for all the test labels in the provided list.

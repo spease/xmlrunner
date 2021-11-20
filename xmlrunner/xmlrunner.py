@@ -47,15 +47,15 @@ class _DelegateIO(object):
         return getattr(self._captured, attr)
 
 
-#def testcase_name(test_method):
-#    testcase = type(test_method)
-#
-#    # Ignore module name if it is '__main__'
-#    module = testcase.__module__ + '.'
-#    if module == '__main__.':
-#        module = ''
-#    result = module + testcase.__name__
-#    return result
+def testcase_name(test_method):
+    testcase = type(test_method)
+
+    # Ignore module name if it is '__main__'
+    module = testcase.__module__ + '.'
+    if module == '__main__.':
+        module = ''
+    result = module + testcase.__name__
+    return result
 
 
 class _TestInfo(object):
